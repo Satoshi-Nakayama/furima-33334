@@ -24,16 +24,16 @@ Things you may want to cover:
 * ...
 
 ## usersテーブル
-| Column          | Type   | Options                   |
-| --------------- | ------ | ------------------------- |
-| nickname        | string | null: false               |
-| email           | string | null: false, unique: true |
-| password        | string | null: false               |
-| last_name       | string | null: false               |
-| first_name      | string | null: false               |
-| last_kana_name  | string | null: false               |
-| first_kana_name | string | null: false               |
-| birthday        | date   | null: false               |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_kana_name     | string | null: false               |
+| first_kana_name    | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 
@@ -56,8 +56,6 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_one :record
-- has_one :address
 
 ## addressesテーブル
 | Column         | Type       | Options                        |
@@ -72,17 +70,16 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :user
-- has_many :items
-- has_many :records
+- belongs_to :record
 
 ## recordsテーブル
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | user           | references | null: false, foreign_key: true |
 | item           | references | null: false, foreign_key: true |
-| address        | references | null: false, foreign_key: true |
+
+### Assosiation
 
 - belongs_to :user
-- has_one :item
-- belongs_to :address
+- belongs_to :item
+- has_one :address
