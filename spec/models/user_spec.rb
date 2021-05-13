@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it '重複したemailが存在する場合登録できない' do
-        @user.save
+        @user.email = 'test@example'
         another_user = User.new(nickname: 'サトシ', email: 'test@example', password: '111aaa', password_confirmation: '111aaa',
                                 first_name: '智史', last_name: '中山', first_kana_name: 'サトシ', last_kana_name: 'ナカヤマ', birthday: '1974-07-16')
         another_user.valid?
