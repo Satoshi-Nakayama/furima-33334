@@ -38,7 +38,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_many :records
+- has_many :orders
 
 ## itemsテーブル
 | Column          | Type       | Options                        |
@@ -56,24 +56,24 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_one :record
+- has_one :order
 
 ## addressesテーブル
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | zip_code       | string     | null: false                    |
-| prefecture_id  | integer     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
 | city           | string     | null: false                    |
 | address_number | string     | null: false                    |
 | building_name  | string     |                                |
 | phone_number   | string     | null: false                    |
-| record         | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :record
+- belongs_to :order
 
-## recordsテーブル
+## ordersテーブル
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | user           | references | null: false, foreign_key: true |
