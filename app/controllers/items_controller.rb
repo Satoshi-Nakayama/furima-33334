@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-  @item = Item.new
+    @item = Item.new
   end
 
   def create
@@ -55,4 +55,5 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+
 end
