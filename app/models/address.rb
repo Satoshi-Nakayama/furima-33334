@@ -1,3 +1,3 @@
 class Address < ApplicationRecord
-  has_one :item
+  belongs_to :item
 end
