@@ -10,6 +10,11 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address).to be_valid
     end
 
+    it '建物名が無くても購入できる' do
+      @order_address.building_name = ""
+      expect(@order_address).to be_valid
+    end
+
     it '郵便番号が無いと購入できない' do
       @order_address.zip_code = ""
       @order_address.valid?
@@ -59,6 +64,16 @@ RSpec.describe OrderAddress, type: :model do
       @order_address.token = nil
       @order_address.valid?
     expect(@order_address.errors.full_messages).to include("Token can't be blank")
+    end
+    it "user_idが無いと購入できない" do
+      @order_address.user_id = nil
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("User can't be blank")
+    end
+    it "item_idが無いと購入できない" do
+      @order_address.item_id = nil
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Item can't be blank")
     end
   end
 end

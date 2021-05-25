@@ -1,15 +1,14 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item
   before_action :current_user_check
   before_action :sold_out_check
-  
+
   def index
     @order_address = OrderAddress.new
-    set_item
   end
 
   def create
-    set_item
     @order_address =OrderAddress.new(order_address_params)
     if @order_address.valid?
       pay_item
@@ -23,7 +22,7 @@ class OrdersController < ApplicationController
   private
 
   def order_address_params
-    params.require(:order_address).permit(:number, :exp_month, :exp_year, :cvc, :zip_code, :prefecture, :city, :address_number, :building_name, :phone_number).merge(item_id: @item.id, user_id: current_user.id, token: params[:token])
+    params.require(:order_address).permit(:zip_code, :prefecture, :city, :address_number, :building_name, :phone_number).merge(item_id: @item.id, user_id: current_user.id, token: params[:token])
   end
 
   def pay_item
@@ -40,14 +39,12 @@ class OrdersController < ApplicationController
   end
 
   def current_user_check
-    set_item
     if current_user == @item.user
       redirect_to root_path
     end
   end
 
   def sold_out_check
-    set_item
     if @item.order != nil
       redirect_to root_path
     end
